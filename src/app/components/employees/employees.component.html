@@ -1,3 +1,16 @@
-<p>
-  employees works!
-</p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Date of Birth</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employees">
+        <th scope="row">{{emp.id}}</th>
+        <td>{{emp.name}}</td>
+        <td>{{formatDate(emp.dob)}}</td>
+      </tr>
+    </tbody>
+  </table>
