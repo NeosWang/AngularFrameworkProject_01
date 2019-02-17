@@ -1,3 +1,35 @@
-<p>
-  tasks works!
-</p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Category</th>
+      <th scope="col">Time of start</th>
+      <th scope="col">Time of end</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of tasks" [class.selected]="task===selectedTask" (click)="onSelect(task)">
+      <th scope="row">{{task.id}}</th>
+      <td>{{task.cate}}</td>
+      <td>{{formatTaskTime(task.timeStart)}}</td>
+      <td>{{formatTaskTime(task.timeEnd)}}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<div *ngIf="selectedTask">
+  <h2>{{selectedTask.cate}} Details</h2>
+  <div><span>id: </span>{{selectedTask.id}}</div>
+  <div>
+    <label>Category:
+      <input [(ngModel)]="selectedTask.cate" placeholder="cate">
+    </label>
+    <label>Start on:
+      <input [(ngModel)]="selectedTask.timeStart" placeholder="start">
+    </label>
+    <label>End on:
+      <input [(ngModel)]="selectedTask.timeEnd" placeholder="end">
+    </label>
+  </div>
+</div>

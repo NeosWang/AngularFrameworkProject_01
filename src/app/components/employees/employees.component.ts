@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from './employee'
-import data from 'src/assets/employees.json';
+import { Employee } from './employee';
+import data from 'src/assets/data.json';
 
 @Component({
   selector: 'app-employees',
@@ -9,21 +9,21 @@ import data from 'src/assets/employees.json';
 })
 export class EmployeesComponent implements OnInit {
 
-  constructor() { console.log() }
+  constructor() {}
   employees: Employee[] = data['employees'];
 
   formatDate(dob: string): any {
     let monthNames = [
-      "January", "February", "March",
-      "April", "May", "June", "July",
-      "August", "September", "October",
-      "November", "December"
+      "Jan", "Feb", "Mar",
+      "Apr", "May", "Jun", "Jul",
+      "Aug", "Sep", "Oct",
+      "Nov", "Dec"
     ];
     var date = new Date(dob);
     let day = date.getDate();
     let monthIndex = date.getMonth();
     let year = date.getFullYear();
-    return day + ' ' + monthNames[monthIndex] + ' ' + year;
+    return year + '-' + monthNames[monthIndex] + '-' + day;
   }
 
   ngOnInit() {

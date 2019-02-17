@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import $ from 'jquery';
 @Component({
   selector: 'app-navibar',
   templateUrl: './navibar.component.html',
@@ -8,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class NavibarComponent implements OnInit {
 
   constructor() { }
+  title="Angular"
 
   ngOnInit() {
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
   }
 
 }

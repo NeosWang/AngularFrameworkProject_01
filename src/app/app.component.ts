@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 // 基本路由
 @Component({
   selector: 'app-root',
@@ -9,7 +8,10 @@ import { Component } from '@angular/core';
 
 
 export class AppComponent {
-  title = 'Angular testing'; //页面属性
+  Title = 'Angular testing'; //页面属性
   constructor(){}
+  ngOnInit(){
+  }
 }
+
 
