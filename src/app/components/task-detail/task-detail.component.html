@@ -1,0 +1,15 @@
+<div *ngIf="task">
+  <h2>{{task.cate|uppercase}} Details</h2>
+  <div><span>id: </span>{{task.id}}</div>
+  <div>
+    <label>Category:
+      <input [(ngModel)]="task.cate" placeholder="cate">
+    </label>
+    <label>Start on:
+      <input [(ngModel)]="task.timeStart" placeholder="start">
+    </label>
+    <label>End on:
+      <input [(ngModel)]="task.timeEnd" placeholder="end">
+    </label>
+  </div>
+</div>

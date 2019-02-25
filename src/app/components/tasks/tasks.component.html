@@ -1,3 +1,19 @@
+<!-- <h2>ngIf</h2>
+<button (click)="show=!show">{{show ? 'hide' : 'show'}}</button>
+
+<div *ngIf="show">
+  <p>
+    <label><input #big type="checkbox" name="size" (change)="0" checked>Big</label>
+    <label><input #small type="checkbox" name="size" (change)="0">Small</label>
+  </p>
+
+  <h3 *ngIf="big.checked">Big heading</h3>
+  <p *ngIf="small.checked">Small paragraph</p>
+</div> -->
+
+
+
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -5,31 +21,51 @@
       <th scope="col">Category</th>
       <th scope="col">Time of start</th>
       <th scope="col">Time of end</th>
+      <th>
+        <!-- button for operating -->
+      </th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let task of tasks" [class.selected]="task===selectedTask" (click)="onSelect(task)">
-      <th scope="row">{{task.id}}</th>
-      <td>{{task.cate}}</td>
-      <td>{{formatTaskTime(task.timeStart)}}</td>
-      <td>{{formatTaskTime(task.timeEnd)}}</td>
+    <ng-container *ngFor="let task of tasks">
+      <tr>
+        <!-- [class.selected]="task===selectedTask" (click)="onSelect(task)"> -->
+        <th scope="row">{{task.id}}</th>
+        <td>{{task.cate||'???'}}</td>
+        <td>{{formatTaskTime(task.timeStart)}}</td>
+        <td>{{formatTaskTime(task.timeEnd)}}</td>
+        <td>
+          <button type="button" class="btn btn-outline-danger btn-sm" (click)="delete(task)"><i class="fa fa-trash-o"
+              aria-hidden="true"></i></button>
+          <button type="button" class="btn btn-outline-info btn-sm" (click)="task.show=!task.show">
+            <i class="fa fa-angle-double-up" aria-hidden="true" *ngIf="task.show"></i>
+            <i class="fa fa-angle-double-down" aria-hidden="true" *ngIf="!task.show"></i>
+          </button>
+        </td>
+      </tr>
+      <ng-container *ngIf="task.show">
+        <tr>
+          <th></th>
+          <th>Location</th>
+          <th colspan="2">Description</th>
+          <td></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td>{{task.location}}</td>         
+          <td colspan="2">
+            {{task.desc}}
+          </td>
+          <td></td>
+        </tr>
+      </ng-container>
+    </ng-container>
+    <tr>
+      <th colspan="4"></th>
+      <td><button type="button" class="btn btn-info  btn-sm" (click)="add()"><i class="fa fa-plus"
+            aria-hidden="true"></i></button></td>
     </tr>
   </tbody>
 </table>
 
-
-<div *ngIf="selectedTask">
-  <h2>{{selectedTask.cate}} Details</h2>
-  <div><span>id: </span>{{selectedTask.id}}</div>
-  <div>
-    <label>Category:
-      <input [(ngModel)]="selectedTask.cate" placeholder="cate">
-    </label>
-    <label>Start on:
-      <input [(ngModel)]="selectedTask.timeStart" placeholder="start">
-    </label>
-    <label>End on:
-      <input [(ngModel)]="selectedTask.timeEnd" placeholder="end">
-    </label>
-  </div>
-</div>
+<app-task-detail [task]="selectedTask"></app-task-detail>

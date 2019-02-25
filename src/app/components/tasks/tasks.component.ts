@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { task } from './task';
+import { Task } from './task';
 import data from 'src/assets/data.json';
 
 
@@ -12,9 +12,13 @@ export class TasksComponent implements OnInit {
 
   constructor() { }
 
-  tasks: task[] = data['tasks'];
+  tasks: Task[] = data['tasks'];
 
   formatTaskTime(time: string): any {
+    if(time == null){
+      return 'Undefined';
+    }
+
     let monthNames = [
       "Jan", "Feb", "Mar",
       "Apr", "May", "Jun", "Jul",
@@ -37,13 +41,27 @@ export class TasksComponent implements OnInit {
     return result;
   }
 
-  selectedTask: task;
-  onSelect(task: task): void {
+  selectedTask: Task;
+  onSelect(task: Task): void {
     this.selectedTask = task;
   }
 
+  delete(task: Task): void {
+    const index = this.tasks.indexOf(task, 0);
+    if (index > -1) {
+      this.tasks.splice(index, 1);
+    }
+    //fake delete
+    // this.tasks=this.tasks.filter(item=>item!==task); 
+  }
 
+  add():void{
+    const newTask=new Task;
+    newTask.id=this.tasks[this.tasks.length-1].id+1;
+    this.tasks.push(newTask);
+  }
   ngOnInit() {
   }
 
+  show = false;
 }

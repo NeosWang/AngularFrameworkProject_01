@@ -17,6 +17,7 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { EmployeesComponent } from './components/employees/employees.component';
 import { DepartmentsComponent } from './components/departments/departments.component';
 import { NavibarComponent } from './components/navibar/navibar.component';
+import { TaskDetailComponent } from './components/task-detail/task-detail.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NavibarComponent } from './components/navibar/navibar.component';
     TasksComponent,
     EmployeesComponent,
     DepartmentsComponent,
-    NavibarComponent
+    NavibarComponent,
+    TaskDetailComponent
   ],
   imports: [
     BrowserModule,
