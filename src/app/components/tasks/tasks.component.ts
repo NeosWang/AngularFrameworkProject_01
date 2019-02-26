@@ -16,7 +16,7 @@ export class TasksComponent implements OnInit {
 
   formatTaskTime(time: string): any {
     if(time == null){
-      return 'Undefined';
+      return '???';
     }
 
     let monthNames = [

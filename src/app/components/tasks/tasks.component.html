@@ -27,17 +27,22 @@
   <tbody>
     <ng-container *ngFor="let task of tasks">
       <tr>
-        <!-- [class.selected]="task===selectedTask" (click)="onSelect(task)"> -->
+        <!-- > -->
         <th scope="row">{{task.id}}</th>
         <td>{{task.cate||'???'}}</td>
         <td>{{formatTaskTime(task.timeStart)}}</td>
         <td>{{formatTaskTime(task.timeEnd)}}</td>
         <td>
-          <button type="button" class="btn btn-outline-danger btn-sm" (click)="delete(task)"><i class="fa fa-trash-o"
-              aria-hidden="true"></i></button>
-          <button type="button" class="btn btn-outline-info btn-sm" (click)="task.show=!task.show">
+          <button type="button" class="mr-1 btn btn-outline-info btn-sm" (click)="task.show=!task.show">
             <i class="fa fa-angle-double-up" aria-hidden="true" *ngIf="task.show"></i>
             <i class="fa fa-angle-double-down" aria-hidden="true" *ngIf="!task.show"></i>
+          </button>
+          <button type="button" class="mr-1 btn btn-outline-primary btn-sm" [class.selected]="task===selectedTask" (click)="onSelect(task)">
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </button>
+          
+          <button type="button" class="mr-1 btn btn-outline-danger btn-sm" (click)="delete(task)">
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
           </button>
         </td>
       </tr>
@@ -50,9 +55,9 @@
         </tr>
         <tr>
           <th></th>
-          <td>{{task.location}}</td>         
+          <td>{{task.location||'???'}}</td>
           <td colspan="2">
-            {{task.desc}}
+            {{task.desc||'???'}}
           </td>
           <td></td>
         </tr>
