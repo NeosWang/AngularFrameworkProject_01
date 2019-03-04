@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from './task';
-import data from 'src/assets/data.json';
+// import data from 'src/assets/data.json'; //move to service
+import {TaskService} from 'src/app/services/task.service';
 
 
 @Component({
@@ -10,9 +11,15 @@ import data from 'src/assets/data.json';
 })
 export class TasksComponent implements OnInit {
 
-  constructor() { }
+  constructor( private taskService: TaskService) { }
 
-  tasks: Task[] = data['tasks'];
+  // tasks: Task[] = data['tasks'];
+  tasks:Task[];
+
+  getTasks():void{
+    this.taskService.getTasks().subscribe(tasks=>this.tasks=tasks);//asynchronous
+    // this.tasks=this.taskService.getTasks();
+  }
 
   formatTaskTime(time: string): any {
     if(time == null){
@@ -42,6 +49,7 @@ export class TasksComponent implements OnInit {
   }
 
   selectedTask: Task;
+
   onSelect(task: Task): void {
     this.selectedTask = task;
   }
@@ -56,12 +64,13 @@ export class TasksComponent implements OnInit {
   }
 
   add():void{
-    const newTask=new Task;
+    const newTask=new Task();
     newTask.id=this.tasks[this.tasks.length-1].id+1;
     this.tasks.push(newTask);
   }
   ngOnInit() {
+    this.getTasks();
   }
 
-  show = false;
+  // show = false;
 }

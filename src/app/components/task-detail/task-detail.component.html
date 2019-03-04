@@ -1,13 +1,10 @@
-<div *ngIf="task">
+<!-- <div *ngIf="task">
   <div class="overlay">
   </div>
   <div class="container">
     <div class="editBox">
       <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <div class="panel panel-info">
-          <!-- <div class="panel-heading">
-          <div class="panel-title">Sign In</div>
-        </div> -->
 
           <div style="padding-top:30px" class="panel-body">
             <form id="loginform" class="form-horizontal" role="form">
@@ -36,24 +33,29 @@
       <button (click)="task=null">test</button>
     </div>
   </div>
-</div>
-
-
-<!-- <h6>{{task.cate|uppercase}} Details</h6>
-<div><span>id: </span>{{task.id}}</div>
-<div>
-  <div>
-    <label>Category:
-      <input [(ngModel)]="task.cate" placeholder="cate">
-    </label></div>
-  <div>
-    <label>Start on:
-      <input [(ngModel)]="task.timeStart" placeholder="start">
-    </label>
-  </div>
-  <div>
-    <label>End on:
-      <input [(ngModel)]="task.timeEnd" placeholder="end">
-    </label>
-  </div>
 </div> -->
+
+<div *ngIf="task!=null">
+  <div class="overlay">
+  </div>
+  <div class="editBox">
+    <h6>{{task.name|uppercase}} Details</h6>
+    <div><span>id: </span>{{task.id}}</div>
+    
+      <div>
+        <label>Name:
+          <input [(ngModel)]="task.name" placeholder="name">
+        </label></div>
+      <div>
+        <label>Due Date:
+          <input [(ngModel)]="task.due_date" placeholder="due">
+        </label>
+      </div>
+      <!-- <div>
+        <label>End on:
+          <input [(ngModel)]="task.timeEnd" placeholder="end">
+        </label>
+      </div> -->
+      <button (click)="task=null">test</button>
+  </div>
+</div>

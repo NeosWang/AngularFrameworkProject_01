@@ -1,8 +1,7 @@
 export class Task {
     id: number;
-    cate: string;
-    timeStart: string;
-    timeEnd: string;
-    location: string;
-    desc: string;
+    department_id: number;
+    name: string;
+    employees: number[]; // array of id of employees assigned to this task
+    due_date: string;
 }

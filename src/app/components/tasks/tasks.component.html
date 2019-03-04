@@ -1,24 +1,9 @@
-<!-- <h2>ngIf</h2>
-<button (click)="show=!show">{{show ? 'hide' : 'show'}}</button>
-
-<div *ngIf="show">
-  <p>
-    <label><input #big type="checkbox" name="size" (change)="0" checked>Big</label>
-    <label><input #small type="checkbox" name="size" (change)="0">Small</label>
-  </p>
-
-  <h3 *ngIf="big.checked">Big heading</h3>
-  <p *ngIf="small.checked">Small paragraph</p>
-</div> -->
-
-
 <table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">ID</th>
-      <th scope="col">Category</th>
-      <th scope="col">Time of start</th>
-      <th scope="col">Time of end</th>
+      <th scope="col">Name</th>
+      <th scope="col">Due Date</th>
       <th>
         <!-- button for operating -->
       </th>
@@ -29,9 +14,8 @@
       <tr>
         <!-- > -->
         <th scope="row">{{task.id}}</th>
-        <td>{{task.cate||'???'}}</td>
-        <td>{{formatTaskTime(task.timeStart)}}</td>
-        <td>{{formatTaskTime(task.timeEnd)}}</td>
+        <td>{{task.name||'???'}}</td>
+        <td>{{formatTaskTime(task.due_date)}}</td>
         <td>
           <button type="button" class="mr-1 btn btn-outline-info btn-sm" (click)="task.show=!task.show">
             <i class="fa fa-angle-double-up" aria-hidden="true" *ngIf="task.show"></i>
@@ -49,22 +33,22 @@
       <ng-container *ngIf="task.show">
         <tr>
           <th></th>
-          <th>Location</th>
-          <th colspan="2">Description</th>
+          <th>Department</th>
+          <th>Employee</th>
           <td></td>
         </tr>
         <tr>
           <th></th>
-          <td>{{task.location||'???'}}</td>
-          <td colspan="2">
-            {{task.desc||'???'}}
+          <td>{{task.department_id||'???'}}</td>
+          <td>
+            {{task.employees||'???'}}
           </td>
           <td></td>
         </tr>
       </ng-container>
     </ng-container>
     <tr>
-      <th colspan="4"></th>
+      <th colspan="3"></th>
       <td><button type="button" class="btn btn-info  btn-sm" (click)="add()"><i class="fa fa-plus"
             aria-hidden="true"></i></button></td>
     </tr>
