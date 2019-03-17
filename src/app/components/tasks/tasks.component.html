@@ -1,56 +1,37 @@
-
-<table class="w-75 table table-striped" align="center" >
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Due Date</th>
-      <th>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <ng-container *ngFor="let task of tasks">
-      <tr routerLink="/task/{{task.id}}">
-        <th>{{task.id}}</th>
-        <td>{{task.name||'???'}}</td>
-        <td>{{task.due_date||'???'}}</td>  
-        <td>
-          <!-- <button type="button" class="mr-1 btn btn-outline-info btn-sm" (click)="task.show=!task.show">
-            <i class="fa fa-angle-double-up" aria-hidden="true" *ngIf="task.show"></i>
-            <i class="fa fa-angle-double-down" aria-hidden="true" *ngIf="!task.show"></i>
-          </button> -->
-          <!-- <button type="button" class="mr-1 btn btn-outline-primary btn-sm" (click)="onSelect(task)">
-            <i class="fa fa-pencil" aria-hidden="true"></i>
-          </button> -->
-          <button type="button" class="mr-1 btn btn-outline-danger btn-sm" (click)="delete(task)">
-            <i class="fa fa-trash-o" aria-hidden="true"></i>
-          </button>
-
-        </td>
+<div class="w-75" align="center">
+  <div class="form-group float-right">
+    <input type="text" class="form-control" placeholder="search..." style="width:200px" [(ngModel)]="searchTerm" />
+  </div>
+  <table class=" table table-striped" >
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Due Date</th>
+        <th>
+        </th>
       </tr>
-      <!-- <ng-container *ngIf="task.show">
-        <tr>
-          <td></td>
-          <td>Department:</td>
-          <td colspan="2">{{getDeptName(task)||'???'}}</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Members:</td>
-          <td colspan="2">
-            {{getEmpName(task)||'???'}}
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let task of filteredTasks">
+        <tr routerLink="/task/{{task.id}}">
+          <th>{{task.id}}</th>
+          <td>{{task.name||'???'}}</td>
+          <td>{{task.due_date||'???'}}</td>
+          <td>
+            <button type="button" class="mr-1 btn btn-outline-danger btn-sm" (click)="delete(task)">
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </button>
           </td>
         </tr>
-      </ng-container> -->
-    </ng-container>
-    <tr>
-      <th colspan="3"></th>
-      <td><button type="button" class="btn btn-info  btn-sm" (click)="add()"><i class="fa fa-plus" aria-hidden="true"></i></button></td>
-    </tr>
-  </tbody>
-</table>
-
+      </ng-container>
+      <tr>
+        <th colspan="3"></th>
+        <td><button type="button" class="btn btn-info  btn-sm" (click)="add()"><i class="fa fa-plus" aria-hidden="true"></i></button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <!-- ifShow lay&box start -->
 <div *ngIf="showLay">
   <!-- overlay start -->

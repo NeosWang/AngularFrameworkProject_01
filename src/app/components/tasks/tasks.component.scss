@@ -10,7 +10,7 @@
 
 .editBox {
   width: 60%;
-  position: absolute;
+  position: fixed;
   top: 52px;
   left: 0;
   right: 0;
@@ -23,7 +23,7 @@
 }
 
 .close {
-  position: absolute;
+  position: fixed;
   top: 10px;
   left: 0;
   right: 0;

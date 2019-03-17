@@ -13,9 +13,12 @@ export class TaskService {
   constructor() { }
 
   getTasks(): Observable<Task[]> {
-    // return of(jsonData['tasks']);
     return of(this.TASKS);
   }
+
+  // getTasks(): Observable<any> {
+  //   return of(this.TASKS);
+  // }
 
   getTask(id: number): Observable<Task> {
     return of(this.TASKS.find(task => task.id === id))

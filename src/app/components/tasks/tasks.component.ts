@@ -20,6 +20,23 @@ export class TasksComponent implements OnInit {
   newTask: Task;
   showLay: boolean;
 
+  filteredTasks: Task[];
+
+  // search bar
+  private _searchTerm: string;
+  get searchTerm(): string {
+    return this._searchTerm;
+  }
+  set searchTerm(value: string) {
+    this._searchTerm = value;
+    this.filteredTasks=this.filterTasks(value);
+  }
+
+  filterTasks(searchString:string){
+    return this.tasks.filter(task=>task.name.toLowerCase().indexOf(searchString.toLowerCase())!==-1);
+  }
+  //
+  
   constructor(private empService: EmployeeService,
     private taskService: TaskService,
     private deptService: DepartmentService) { }
@@ -28,6 +45,7 @@ export class TasksComponent implements OnInit {
     this.getTasks();
     this.getAllDepts();
     this.showLay = false;
+    this.filteredTasks=this.tasks;
   }
 
   //  onInit
@@ -57,12 +75,13 @@ export class TasksComponent implements OnInit {
   addCfm(): void {
     this.tasks.push(this.newTask);
     console.log(this.newTask);
+    this.filteredTasks=this.filterTasks(this.searchTerm);
   }
 
   onChange(deptId: number): void {
-    this.newTask.employees=[];
-    const empLst=this.deptService.getEmpsOfTheDept(deptId);
-    this.empService.getEmpLst(empLst).subscribe(emps=>this.emps=emps);
+    this.newTask.employees = [];
+    const empLst = this.deptService.getEmpsOfTheDept(deptId);
+    this.empService.getEmpLst(empLst).subscribe(emps => this.emps = emps);
   }
 
   updateAssignList(id: number) {

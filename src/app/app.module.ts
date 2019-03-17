@@ -19,6 +19,8 @@ import { DepartmentsComponent } from './components/departments/departments.compo
 import { NavibarComponent } from './components/navibar/navibar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TaskDetailComponent } from './components/task-detail/task-detail.component';
+import { CalenComponent } from './components/calen/calen.component';
+import { FullCalendarModule} from 'ng-fullcalendar';
 
 @NgModule({
   declarations: [
@@ -29,11 +31,13 @@ import { TaskDetailComponent } from './components/task-detail/task-detail.compon
     NavibarComponent,
     DashboardComponent,
     TaskDetailComponent,
+    CalenComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    FullCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
