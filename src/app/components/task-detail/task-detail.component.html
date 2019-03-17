@@ -1,61 +1,40 @@
-<!-- <div *ngIf="task">
-  <div class="overlay">
-  </div>
-  <div class="container">
-    <div class="editBox">
-      <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-        <div class="panel panel-info">
-
-          <div style="padding-top:30px" class="panel-body">
-            <form id="loginform" class="form-horizontal" role="form">
-              <h6>{{task.cate|uppercase}} Details</h6>
-              <div><span>id: </span>{{task.id}}</div>
-              <div>
-                <div>
-                  <label>Category:
-                    <input [(ngModel)]="task.cate" placeholder="cate">
-                  </label></div>
-                <div>
-                  <label>Start on:
-                    <input [(ngModel)]="task.timeStart" placeholder="start">
-                  </label>
-                </div>
-                <div>
-                  <label>End on:
-                    <input [(ngModel)]="task.timeEnd" placeholder="end">
-                  </label>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <button (click)="task=null">test</button>
-    </div>
-  </div>
-</div> -->
-
-<div *ngIf="task!=null">
-  <div class="overlay">
-  </div>
+<div *ngIf='task'>
   <div class="editBox">
-    <h6>{{task.name|uppercase}} Details</h6>
+    <h2>{{task.name}} Details</h2>
     <div><span>id: </span>{{task.id}}</div>
-    
-      <div>
-        <label>Name:
-          <input [(ngModel)]="task.name" placeholder="name">
-        </label></div>
-      <div>
-        <label>Due Date:
-          <input [(ngModel)]="task.due_date" placeholder="due">
-        </label>
-      </div>
-      <!-- <div>
-        <label>End on:
-          <input [(ngModel)]="task.timeEnd" placeholder="end">
-        </label>
-      </div> -->
-      <button (click)="task=null">test</button>
+    <div>
+      <label>Name:
+        <input [(ngModel)]="task.name" placeholder="name">
+      </label>
+    </div>
+    <div>
+      <label>Due Date:
+        <input [(ngModel)]="task.due_date" placeholder="due date">
+      </label>
+    </div>
+
+
+
+    <div>
+      <label>Department:
+        <select required [(ngModel)]="task.department_id" (change)="onChange(task.department_id)" >
+          <option *ngFor="let dept of depts" [ngValue]="dept.id">{{ dept.name }}</option>
+        </select>
+      </label>
+    </div>
+    <div>
+      <label>Employee:
+        <div>
+          <ng-container *ngFor="let emp of emps">
+            <span class="m-3"><input type="checkbox" checked="{{ task.employees.includes(emp.id) ? 'checked':'' }}"
+                (change)="updateAssignList(emp.id)" /><label>{{emp.id}}. {{emp.name}}</label></span>
+          </ng-container>
+        </div>
+      </label>
+    </div>
+
+
+
   </div>
+  <button (click)="goBack()">go back</button>
 </div>

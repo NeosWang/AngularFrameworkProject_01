@@ -1,58 +1,98 @@
-<table class="table table-striped">
+
+<table class="w-75 table table-striped" align="center" >
   <thead>
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Name</th>
       <th scope="col">Due Date</th>
       <th>
-        <!-- button for operating -->
       </th>
     </tr>
   </thead>
   <tbody>
     <ng-container *ngFor="let task of tasks">
-      <tr>
-        <!-- > -->
-        <th scope="row">{{task.id}}</th>
+      <tr routerLink="/task/{{task.id}}">
+        <th>{{task.id}}</th>
         <td>{{task.name||'???'}}</td>
-        <td>{{formatTaskTime(task.due_date)}}</td>
+        <td>{{task.due_date||'???'}}</td>  
         <td>
-          <button type="button" class="mr-1 btn btn-outline-info btn-sm" (click)="task.show=!task.show">
+          <!-- <button type="button" class="mr-1 btn btn-outline-info btn-sm" (click)="task.show=!task.show">
             <i class="fa fa-angle-double-up" aria-hidden="true" *ngIf="task.show"></i>
             <i class="fa fa-angle-double-down" aria-hidden="true" *ngIf="!task.show"></i>
-          </button>
-          <button type="button" class="mr-1 btn btn-outline-primary btn-sm" [class.selected]="task===selectedTask" (click)="onSelect(task)">
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-            </button>
-          
+          </button> -->
+          <!-- <button type="button" class="mr-1 btn btn-outline-primary btn-sm" (click)="onSelect(task)">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </button> -->
           <button type="button" class="mr-1 btn btn-outline-danger btn-sm" (click)="delete(task)">
             <i class="fa fa-trash-o" aria-hidden="true"></i>
           </button>
+
         </td>
       </tr>
-      <ng-container *ngIf="task.show">
+      <!-- <ng-container *ngIf="task.show">
         <tr>
-          <th></th>
-          <th>Department</th>
-          <th>Employee</th>
           <td></td>
+          <td>Department:</td>
+          <td colspan="2">{{getDeptName(task)||'???'}}</td>
         </tr>
         <tr>
-          <th></th>
-          <td>{{task.department_id||'???'}}</td>
-          <td>
-            {{task.employees||'???'}}
+          <td></td>
+          <td>Members:</td>
+          <td colspan="2">
+            {{getEmpName(task)||'???'}}
           </td>
-          <td></td>
         </tr>
-      </ng-container>
+      </ng-container> -->
     </ng-container>
     <tr>
       <th colspan="3"></th>
-      <td><button type="button" class="btn btn-info  btn-sm" (click)="add()"><i class="fa fa-plus"
-            aria-hidden="true"></i></button></td>
+      <td><button type="button" class="btn btn-info  btn-sm" (click)="add()"><i class="fa fa-plus" aria-hidden="true"></i></button></td>
     </tr>
   </tbody>
 </table>
 
-<app-task-detail [task]="selectedTask"></app-task-detail>
+<!-- ifShow lay&box start -->
+<div *ngIf="showLay">
+  <!-- overlay start -->
+  <div class="overlay">
+  </div>
+  <!-- overlay end -->
+  <!-- editBox start -->
+  <div class="editBox">
+    <h2>{{newTask.name}} Details</h2>
+    <div><span>id: </span>{{newTask.id}}</div>
+    <div>
+      <label>Name:
+        <input [(ngModel)]="newTask.name" placeholder="name">
+      </label>
+    </div>
+    <div>
+      <label>Due Date:
+        <input [(ngModel)]="newTask.due_date" placeholder="due date">
+      </label>
+    </div>
+    <div>
+      <label>Department:
+        <select [(ngModel)]="newTask.department_id" (change)="onChange(newTask.department_id)">
+          <option *ngFor="let dept of depts" [ngValue]="dept.id">{{ dept.name }}</option>
+        </select>
+      </label>
+    </div>
+    <div>
+      <label>Employee:
+        <div>
+          <ng-container *ngFor="let emp of emps">
+            <span class="m-3"><input type="checkbox" checked="{{ newTask.employees.includes(emp.id) ? 'checked':'' }}"
+                (change)="updateAssignList(emp.id)" /><label>{{emp.id}}. {{emp.name}}</label></span>
+          </ng-container>
+        </div>
+      </label>
+    </div>
+    <button (click)='addCfm(); showLay=!showLay'>confirm</button>
+  </div>
+  <!-- editBox end -->
+  <!-- overlay closeButton start -->
+  <a class="close" (click)="showLay=!showLay"></a>
+  <!-- overlay closeButton end -->
+</div>
+<!-- ifShow lay&box end -->

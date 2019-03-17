@@ -1,25 +1,193 @@
 {
-    "tasks":[
-        {
-            "id": 1,
-            "department_id": 1,
-            "name": "meeting",
-            "employees": [1,2,3],
-            "due_date": "2019/02/18 16:05:00"
-        },
-        {
-            "id": 2,
-            "department_id": 1,
-            "name": "meeting",
-            "employees": [1,2,3],
-            "due_date": "2019/02/18 16:05:00"
-        },
-        {
-            "id": 2,
-            "department_id": 1,
-            "name": "meeting",
-            "employees": [1,2,3],
-            "due_date": "2019/02/18 16:05:00"
-        }
-    ]
+  "employees": [{
+    "id": 1092,
+    "department_id": 348,
+    "first_name": "Zeeshan",
+    "last_name": "Chaudhry",
+    "birth_date": null
+  }, {
+    "id": 1093,
+    "department_id": 348,
+    "first_name": "Naveed",
+    "last_name": "Choudhary",
+    "birth_date": null
+  }, {
+    "id": 1094,
+    "department_id": 348,
+    "first_name": "Craig",
+    "last_name": "Coates",
+    "birth_date": null
+  }, {
+    "id": 1095,
+    "department_id": 348,
+    "first_name": "Lee",
+    "last_name": "Cox",
+    "birth_date": null
+  }, {
+    "id": 1096,
+    "department_id": 349,
+    "first_name": "Clare",
+    "last_name": "Craig",
+    "birth_date": null
+  }, {
+    "id": 1097,
+    "department_id": 349,
+    "first_name": "Susan",
+    "last_name": "Crockett",
+    "birth_date": null
+  }, {
+    "id": 1098,
+    "department_id": 349,
+    "first_name": "David",
+    "last_name": "Dooley",
+    "birth_date": null
+  }, {
+    "id": 1099,
+    "department_id": 349,
+    "first_name": "Zahid",
+    "last_name": "Ebrahim",
+    "birth_date": null
+  }, {
+    "id": 1100,
+    "department_id": 350,
+    "first_name": "Valerie",
+    "last_name": "Jenkins",
+    "birth_date": null
+  }, {
+    "id": 1101,
+    "department_id": 350,
+    "first_name": "Ruth",
+    "last_name": "Johnson",
+    "birth_date": null
+  }, {
+    "id": 1102,
+    "department_id": 350,
+    "first_name": "Andrew",
+    "last_name": "Martin",
+    "birth_date": null
+  }, {
+    "id": 1103,
+    "department_id": 350,
+    "first_name": "Alan",
+    "last_name": "Mason",
+    "birth_date": null
+  }, {
+    "id": 1104,
+    "department_id": 351,
+    "first_name": "Gail",
+    "last_name": "Matthews",
+    "birth_date": null
+  }, {
+    "id": 1105,
+    "department_id": 351,
+    "first_name": "Martin",
+    "last_name": "Murphy",
+    "birth_date": null
+  }, {
+    "id": 1106,
+    "department_id": 351,
+    "first_name": "John",
+    "last_name": "Robinson",
+    "birth_date": null
+  }, {
+    "id": 1107,
+    "department_id": 351,
+    "first_name": "Guy",
+    "last_name": "Stevenson",
+    "birth_date": null
+  }],
+  "departments": [{
+    "id": 348,
+    "name": "Software Engineering",
+    "building": "R1",
+    "employees": [1092, 1093, 1094, 1095]
+  }, {
+    "id": 349,
+    "name": "Human Resources",
+    "building": "R1",
+    "employees": [1096, 1097, 1098, 1099]
+  }, {
+    "id": 350,
+    "name": "Student Administration",
+    "building": "R1",
+    "employees": [1100, 1101, 1102, 1103]
+  }, {
+    "id": 351,
+    "name": "ICT & Support",
+    "building": "R1",
+    "employees": [1104, 1105, 1106, 1107]
+  }],
+  "tasks": [{
+    "id": 844,
+    "department_id": 348,
+    "name": "Ride in a Hot Air Balloon",
+    "employees": [1092, 1093],
+    "due_date": null
+  }, {
+    "id": 845,
+    "department_id": 348,
+    "name": "See the Grand Canyon",
+    "employees": [1093, 1094],
+    "due_date": null
+  }, {
+    "id": 846,
+    "department_id": 348,
+    "name": "Swim With Dolphins",
+    "employees": [1092, 1094],
+    "due_date": null
+  }, {
+    "id": 847,
+    "department_id": 349,
+    "name": "Go on Safari",
+    "employees": [1098, 1099],
+    "due_date": null
+  }, {
+    "id": 848,
+    "department_id": 349,
+    "name": "Ride a Helicopter",
+    "employees": [1096, 1099],
+    "due_date": null
+  }, {
+    "id": 849,
+    "department_id": 349,
+    "name": "Visit All Seven Continents",
+    "employees": [1096, 1097],
+    "due_date": null
+  }, {
+    "id": 850,
+    "department_id": 350,
+    "name": "Scuba Dive the Great Barrier Reef",
+    "employees": [1100, 1101],
+    "due_date": null
+  }, {
+    "id": 851,
+    "department_id": 350,
+    "name": "Go on a Road Trip",
+    "employees": [1100, 1101],
+    "due_date": null
+  }, {
+    "id": 852,
+    "department_id": 350,
+    "name": "Shower in a Waterfall",
+    "employees": [1100, 1103],
+    "due_date": null
+  }, {
+    "id": 853,
+    "department_id": 351,
+    "name": "Travel to Italy",
+    "employees": [1105, 1106],
+    "due_date": null
+  }, {
+    "id": 854,
+    "department_id": 351,
+    "name": "Go Sky-Diving",
+    "employees": [1104, 1107],
+    "due_date": null
+  }, {
+    "id": 855,
+    "department_id": 351,
+    "name": "Get Married",
+    "employees": [1104, 1106],
+    "due_date": null
+  }]
 }

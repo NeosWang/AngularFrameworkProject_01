@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from './task';
-// import data from 'src/assets/data.json'; //move to service
-import {TaskService} from 'src/app/services/task.service';
+import { TaskService } from 'src/app/services/task.service';
+import { Department } from '../departments/department';
+import { DepartmentService } from 'src/app/services/department.service';
+import { Employee } from '../employees/employee';
+import { EmployeeService } from 'src/app/services/employee.service';
 
 
 @Component({
@@ -11,66 +14,66 @@ import {TaskService} from 'src/app/services/task.service';
 })
 export class TasksComponent implements OnInit {
 
-  constructor( private taskService: TaskService) { }
+  tasks: Task[];
+  emps: Employee[];
+  depts: Department[];
+  newTask: Task;
+  showLay: boolean;
 
-  // tasks: Task[] = data['tasks'];
-  tasks:Task[];
+  constructor(private empService: EmployeeService,
+    private taskService: TaskService,
+    private deptService: DepartmentService) { }
 
-  getTasks():void{
-    this.taskService.getTasks().subscribe(tasks=>this.tasks=tasks);//asynchronous
-    // this.tasks=this.taskService.getTasks();
+  ngOnInit() {
+    this.getTasks();
+    this.getAllDepts();
+    this.showLay = false;
   }
 
-  formatTaskTime(time: string): any {
-    if(time == null){
-      return '???';
-    }
-
-    let monthNames = [
-      "Jan", "Feb", "Mar",
-      "Apr", "May", "Jun", "Jul",
-      "Aug", "Sep", "Oct",
-      "Nov", "Dec"
-    ];
-    var date = new Date(time);
-    let day = date.getDate();
-    let monthIndex = date.getMonth();
-    let year = date.getFullYear();
-    let hour = date.getHours();
-    let min = date.getMinutes();
-
-    let result = year + '-' + monthNames[monthIndex] + '-' + day + ' ' + hour + ':';
-    if (min < 10) {
-      result = result + '0' + min;
-    } else {
-      result += min;
-    }
-    return result;
+  //  onInit
+  getTasks(): void {
+    this.taskService.getTasks().subscribe(tasks => this.tasks = tasks);
   }
 
-  selectedTask: Task;
-
-  onSelect(task: Task): void {
-    this.selectedTask = task;
+  getAllDepts(): void {
+    this.deptService.getDepts().subscribe(depts => this.depts = depts);
   }
+  // 
 
   delete(task: Task): void {
     const index = this.tasks.indexOf(task, 0);
     if (index > -1) {
       this.tasks.splice(index, 1);
     }
-    //fake delete
-    // this.tasks=this.tasks.filter(item=>item!==task); 
   }
 
-  add():void{
-    const newTask=new Task();
-    newTask.id=this.tasks[this.tasks.length-1].id+1;
-    this.tasks.push(newTask);
-  }
-  ngOnInit() {
-    this.getTasks();
+  add(): void {
+    this.newTask = new Task();
+    this.newTask.id = this.tasks[this.tasks.length - 1].id + 1;
+    this.newTask.employees = [];
+    this.showLay = !this.showLay;
   }
 
-  // show = false;
+  addCfm(): void {
+    this.tasks.push(this.newTask);
+    console.log(this.newTask);
+  }
+
+  onChange(deptId: number): void {
+    this.newTask.employees=[];
+    const empLst=this.deptService.getEmpsOfTheDept(deptId);
+    this.empService.getEmpLst(empLst).subscribe(emps=>this.emps=emps);
+  }
+
+  updateAssignList(id: number) {
+    const idx = this.newTask.employees.indexOf(id);
+    if (idx != -1) {
+      this.newTask.employees.splice(idx, 1);
+    } else {
+      this.newTask.employees.push(id);
+    }
+  }
+
+
+
 }

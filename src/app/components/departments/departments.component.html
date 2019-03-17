@@ -1,3 +1,97 @@
-<p>
-  departments works!
-</p>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Due Date</th>
+        <th>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let task of tasks">
+        <tr>
+          <th>{{task.id}}</th>
+          <td>{{task.name||'???'}}</td>
+          <td>{{task.due_date||'???'}}</td>
+          <td>
+            <button type="button" class="mr-1 btn btn-outline-info btn-sm" (click)="task.show=!task.show">
+              <i class="fa fa-angle-double-up" aria-hidden="true" *ngIf="task.show"></i>
+              <i class="fa fa-angle-double-down" aria-hidden="true" *ngIf="!task.show"></i>
+            </button>
+            <button type="button" class="mr-1 btn btn-outline-primary btn-sm" (click)="onSelect(task)">
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="mr-1 btn btn-outline-danger btn-sm" (click)="delete(task)">
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </button>
+  
+          </td>
+        </tr>
+        <ng-container *ngIf="task.show">
+          <tr>
+            <td></td>
+            <td>Department:</td>
+            <td colspan="2">{{getDeptName(task)||'???'}}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Members:</td>
+            <td colspan="2">
+              {{getEmpName(task)||'???'}}
+            </td>
+          </tr>
+        </ng-container>
+      </ng-container>
+      <tr>
+        <th colspan="3"></th>
+        <td><button type="button" class="btn btn-info  btn-sm" (click)="add()"><i class="fa fa-plus" aria-hidden="true"></i></button></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <!-- ifShow lay&box start -->
+  <div *ngIf="showLay">
+    <!-- overlay start -->
+    <div class="overlay">
+    </div>
+    <!-- overlay end -->
+    <!-- editBox start -->
+    <div class="editBox">
+      <h2>{{selectedTask.name}} Details</h2>
+      <div><span>id: </span>{{selectedTask.id}}</div>
+      <div>
+        <label>Name:
+          <input [(ngModel)]="selectedTask.name" placeholder="name">
+        </label>
+      </div>
+      <div>
+        <label>Due Date:
+          <input [(ngModel)]="selectedTask.due_date" placeholder="due date">
+        </label>
+      </div>
+      <div>
+        <label>Department:
+          <select required [(ngModel)]="selectedTask.department_id">
+            <option *ngFor="let dept of depts" [ngValue]="dept.id">{{ dept.name }}</option>
+          </select>
+        </label>
+      </div>
+      <div>
+        <label>Employee:
+          <div>
+            <ng-container *ngFor="let emp of emps">
+              <span class="m-3"><input type="checkbox" checked="{{ selectedTask.employees.includes(emp.id) ? 'checked':'' }}"
+                  (change)="updateAssignList(emp.id)" /><label>{{emp.id}}. {{emp.name}}</label></span>
+            </ng-container>
+          </div>
+        </label>
+      </div>
+    </div>
+    <!-- editBox end -->
+    <!-- overlay closeButton start -->
+    <a class="close" (click)="showLay=!showLay"></a>
+    <!-- overlay closeButton end -->
+  </div>
+  <!-- ifShow lay&box end -->
+  

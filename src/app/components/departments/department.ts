@@ -1,5 +1,6 @@
 export class Department {
     id: number;
     name: string;
-    dob: string;
+    building: string;
+    employees:number[];   
 }
