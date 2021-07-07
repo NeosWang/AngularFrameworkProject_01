@@ -1,4 +1,4 @@
-# MyApp
+# An angular-based HR and task management system
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.0.
 
